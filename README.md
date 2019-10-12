@@ -1,1 +1,2 @@
-# YeastTranscriptomics_DB
+# Yeast Transcriptomics Database
+
