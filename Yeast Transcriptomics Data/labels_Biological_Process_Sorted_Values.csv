@@ -1,0 +1,17 @@
+Verified,Biological Process,,,,,,,
+Dubious,ion,ion,positive,repair,positive,catabolic process,transport,protein
+Uncharacterized,biological_process,regulation,ion,regulation,negative,ion,copper,biological_process
+NA,protein,protein,catabolic process,ion,catabolic process,transport,catabolic process,histone
+Verified|silenced_gene,transport,positive,targeting,histone,regulation,histone,protein,
+status,regulation,catabolic process,regulation,catabolic process,protein,regulation,ion,
+,negative,membrane organization,negative,positive,transport,starvation,negative,
+,positive,starvation,membrane organization,protein,histone,repair,positive,
+,copper,negative,protein,negative,ion,negative,starvation,
+,catabolic process,targeting,transport,metabolic process,repair,protein,regulation,
+,metabolic process,repair,histone,transport,metabolic process,positive,,
+,,transport,repair,starvation,targeting,metabolic process,,
+,repair,histone,starvation,targeting,membrane organization,,,
+,histone,copper,copper,membrane organization,starvation,,,
+,starvation,metabolic process,metabolic process,,biological_process,,,
+,membrane organization,biological_process,biological_process,,,,,
+,targeting,,,,,,,
