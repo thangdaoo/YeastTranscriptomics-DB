@@ -25,3 +25,23 @@ cur.execute('''CREATE TABLE Yeast_Gene (Gene_ID VARCHAR(30) NOT NULL PRIMARY KEY
 cur.execute('''CREATE TABLE SC_Expression (SC_ID VARCHAR(30) NOT NULL PRIMARY KEY,Gene_ID VARCHAR(30),Condit_ID VARCHAR(30), FOREIGN KEY(Condit_ID) REFERENCES Conditions_Annotations(Condit_ID),FOREIGN KEY(Gene_ID) REFERENCES Yeast_Gene(Gene_ID));''')
 cur.execute('''CREATE TABLE Localization (Localization_ID VARCHAR(30) NOT NULL PRIMARY  KEY,Biological_Process_Loc VARCHAR(100),Cellular_Component_Loc VARCHAR(100),Molecular_Function VARCHAR(100), Localization_Name VARCHAR(100));''')
 cur.execute('''CREATE TABLE YeastGene_Localization(Process_ID VARCHAR(30) NOT NULL PRIMARY KEY,Gene_ID VARCHAR(30), Localization_ID VARCHAR(30),FOREIGN KEY(Gene_ID) REFERENCES Yeast_Gene(Gene_ID),FOREIGN KEY(Localization_ID) REFERENCES Localization(Localization_ID));''')
+#data parser
+with open("Yeast Transcriptomics Data/conditions_annotation.csv",'r') as f1:
+    for line in f1:
+        line = line.split(',')
+        if(len(line) < 4):
+            ID = line.__getitem__(0)
+            primary = line.__getitem__(1)
+            secondary = line.__getitem__(2)
+            addition_info = 'null'
+        if(len(line) == 4):
+            ID = line.__getitem__(0)
+            primary = line.__getitem__(1)
+            secondary = line.__getitem__(2)
+            addition_info = line.__getitem__(3)
+        else:
+            print('ERROR: INVALID TUPLE')
+        print(ID,primary,secondary, addition_info)
+        #print(len(line.split(',')))
+       #print(line.split())
+        print(ID,primary,secondary,addition_info)
