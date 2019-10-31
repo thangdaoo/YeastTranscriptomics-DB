@@ -35,19 +35,13 @@ with open("Yeast Transcriptomics Data/conditions_annotation.csv",'r') as r1:
             primary = line.__getitem__(1)
             secondary = line.__getitem__(2)
             addition_info = 'null'
-         cur.execute(
-                'INSERT INTO Conditions_Annotations(Condit_ID,PrimaryComponent,SecondaryComponent,Additional_Information) VALUES (%s,%s,%s,%s)',
-                (ID, primary, secondary, addition_info))
+            cur.execute('INSERT IGNORE INTO Conditions_Annotations(Condit_ID,PrimaryComponent,SecondaryComponent,Additional_Information) VALUES (%s,%s,%s,%s)',(ID, primary, secondary, addition_info))
         if(len(line) == 4):
             ID = line.__getitem__(0)
             primary = line.__getitem__(1)
             secondary = line.__getitem__(2)
             addition_info = line.__getitem__(3)
-            cur.execute(
-                'INSERT INTO Conditions_Annotations(Condit_ID,PrimaryComponent,SecondaryComponent,Additional_Information) VALUES (%s,%s,%s,%s)',
-                (ID, primary, secondary, addition_info))
-        else:
-            print('ERROR: INVALID TUPLE')
+            cur.execute('INSERT IGNORE INTO Conditions_Annotations(Condit_ID,PrimaryComponent,SecondaryComponent,Additional_Information) VALUES (%s,%s,%s,%s)',(ID, primary, secondary, addition_info))
         print(ID,primary,secondary,addition_info)
 
 
