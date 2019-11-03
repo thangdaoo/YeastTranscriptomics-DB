@@ -1,0 +1,90 @@
+,ID,primary,secondary,additional_information
+0,AFIQCI,wildtype,wildtype 1,null
+1,AFIQBR,wildtype,wildtype 2,null
+2,AFIINC,itc1,itc1-1_dUTP,null
+3,AFNAQI,itc1,itc1-1_dUTP,null
+4,AFNCCR,swr1,swr1 mutant,null
+5,AFNCCA,swr1,swr1 mutant,null
+6,FABINB,tet-STH1,<not provided>,null
+7,FABINF,tet-STH1,<not provided>,null
+8,FAFAFF,tet-INO80,tet-ino80,null
+9,FAFAFQ,tet-INO80,tet-ino80,null
+10,FAFAQQ,tet-control strain,tet-control,null
+11,FAFASB,tet-control strain,tet-control,null
+12,FFNARI,Strain5,phenol lysis,null
+13,FFNARS,Strain5,phenol lysis,null
+14,FFNARN,Strain6,phenol lysis,null
+15,FFNAAR,Strain6,phenol lysis,null
+16,FFNAAA,Strain6,phenol lysis,null
+18,FFNAAC,Strain7,phenol lysis,null
+19,FFNAAQ,Strain7,phenol lysis,null
+20,QCAQFQ,wildtype,Mat a,null
+21,QCAQFI,wildtype,Mat a,null
+22,QCAQFS,anMX4,BY4741 background,null
+23,QCAQFN,anMX4,BY4741 background,null
+24,QCFFAB,rrp6,rrp6,null
+25,QCFQIA,rrp6,rrp6,null
+26,QNCSCQ,MATa MAL2-8c SUC2,CEN.PK113-7D,null
+27,QNCSCI,MATa MAL2-8c SUC2,CEN.PK113-7D,null
+28,QNCSCS,MATa ura3-52 his3-1 leu2-3, hxk1::KlLEU2,IMX372
+29,QNCSCN,MATa ura3-52 his3-1 leu2-3, hxk1::KlLEU2,IMX372
+30,IAAICF,hybrid  cerevisiae x  paradoxus ,Citrinin,null
+31,IAAICQ,hybrid  cerevisiae x  paradoxus,Citrinin,null
+32,IAAICI,hybrid  cerevisiae x  paradoxus,Untreated,null
+33,IAAICS,hybrid  cerevisiae x  paradoxus,Untreated,null
+34,IFAAAR,DDY3630,strain W303,null
+35,IFAAAA,DDY4300,strain W303,null
+36,IFAAAA,DDY4301,strain W303,null
+37,IFFABC,E1A1,ethanol,null
+38,IFFABB,E1A2,ethanol,null
+39,IFFABF,E1B1,ethanol,null
+40,IFFABQ,E1B2,ethanol,null
+41,IFFABI,E2A1,ethanol,null
+42,IFFABS,E2A2,ethanol,null
+43,IFFABN,E2B1,ethanol,null
+44,IFFAFR,E2B2,ethanol,null
+45,IFFAFA,G1A1,glucose,null
+46,IFFAFA,G1A2,glucose,null
+47,IFFAFC,G1B1,glucose,null
+48,IFFAFB,G1B2,glucose,null
+49,IFFAFF,G2A1,glucose,null
+50,IFFAFQ,G2A2,glucose,null
+51,IFFAFI,G2B1,glucose,null
+52,IFFAFS,G2B2,glucose,null
+53,INICIR,YB210,biofuel generation,null
+54,INICIA,YB210,biofuel generation,null
+56,INICIC,YB211,biofuel generation,null
+57,INICIB,YB211,biofuel generation,null
+58,INICIF,YB211,biofuel generation,null
+59,INICIQ,YB212,biofuel generation,null
+60,INICII,YB212,biofuel generation,null
+61,INICIS,YB212,biofuel generation,null
+62,INICIN,YB213,biofuel generation,null
+63,INICSR,YB213,biofuel generation,null
+64,INICSA,YB213,biofuel generation,null
+65,SAABRQ,wild type,none,null
+66,SAASAQ,wild type,galactose,null
+67,SAASCC,pbs2,galactose,null
+68,SAASCF,ste12,galactose,null
+69,SAANNN,wild type,tunicamycin,null
+70,SAARRR,pbs2,tunicamycin,null
+71,SAARRS,wild type,salt stress,null
+72,SAARAA,pbs2,salt stress,null
+73,SARIAI,fy3,chemostat,null
+74,SARICB,fy3,chemostat,null
+75,SAABBN,15 deg,temperature,null
+76,SAABFR,15 deg,temperature,null
+77,SAABFA,15 deg,temperature,null
+79,SAABFI,37 deg,temperature,null
+80,SAABFS,37 deg,temperature,null
+81,SAABFN,37 deg,temperature,null
+82,SAABQR,37 deg,temperature,null
+83,SAABQF,30 deg,temperature,null
+84,SAABQQ,30 deg,temperature,null
+85,SAABQI,30 deg,temperature,null
+86,SAABQS,30 deg,temperature,null
+87,SAABIC,37 deg ,temperature,dedbox1
+88,SAABIB,37 deg,temperature,dedbox1
+89,SAABIF,37 deg,temperature,dedbox1
+90,SAABIQ,37 deg,temperature,dedbox1
+91,SICIBA,undocumented,undocumented,null

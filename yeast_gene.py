@@ -30,7 +30,7 @@ cur.execute('''CREATE TABLE Localization (Localization_ID INT NOT NULL AUTO_INCR
 # cur.execute('''CREATE TABLE YeastGene_Localization (YeastGeneLoc_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Gene_ID VARCHAR(30), Localization_ID VARCHAR(30), FOREIGN KEY(Gene_ID) REFERENCES Yeast_Gene(Gene_ID),FOREIGN KEY(Localization_ID) REFERENCES Localization(Localization_ID));''')
 
 # Data Parser
-with open("Yeast Transcriptomics Data/conditions_annotation.csv", 'r') as r1:
+with open("data/conditions_annotation.csv", 'r') as r1:
     for line in r1:
         line = line.split(',')
         if(len(line) == 3):
@@ -47,21 +47,21 @@ with open("Yeast Transcriptomics Data/conditions_annotation.csv", 'r') as r1:
             cur.execute('INSERT IGNORE INTO Conditions_Annotations(Condit_ID,PrimaryComponent,SecondaryComponent,Additional_Information) VALUES (%s,%s,%s,%s)',(ID, primary, secondary, addition_info))
         # print(ID, primary, secondary, addition_info)
 
-with open("Yeast Transcriptomics Data/labels_BP.csv", 'r') as r2:
+with open("data/labels_BP.csv", 'r') as r2:
     for line in r2:
         line = line.split(',')
         if len(line) == 2:
             ID = line.__getitem__(0)
             validation = line.__getitem__(1)
             loc1 = 'null'
-            # cur.execute('INSERT IGNORE INTO Yeast_Gene(Gene_ID,Validation) VALUES (%s,%s)', (gene_name, validation))
+            cur.execute('INSERT IGNORE INTO Yeast_Gene(Gene_ID,Validation) VALUES (%s,%s)', (gene_name, validation))
             cur.execute('INSERT IGNORE INTO Localization(Biological_Process_Loc) VALUES (%s)', loc1)
             # print(ID, validation, loc1)
         if len(line) == 3:
             ID = line.__getitem__(0)
             validation = line.__getitem__(1)
             loc1 = line.__getitem__(2)
-            # cur.execute('INSERT IGNORE INTO Yeast_Gene(Gene_ID,Validation) VALUES (%s,%s)', (gene_name, validation))
+            cur.execute('INSERT IGNORE INTO Yeast_Gene(Gene_ID,Validation) VALUES (%s,%s)', (gene_name, validation))
             cur.execute('INSERT IGNORE INTO Localization(Biological_Process_Loc) VALUES (%s)', loc1)
             # print(ID, validation, loc1)
         if len(line) == 4:
@@ -170,7 +170,7 @@ with open("Yeast Transcriptomics Data/labels_BP.csv", 'r') as r2:
             cur.execute('INSERT IGNORE INTO Localization(Biological_Process_Loc) VALUES (%s)', loc8)
             # print(ID, validation, loc1, loc2, loc3, loc4, loc5, loc6, loc7, loc8)
 
-with open("Yeast Transcriptomics Data/labels_MF.csv",'r') as r3:
+with open("data/labels_MF.csv",'r') as r3:
     for line in r3:
         line = line.split(',')
         if len(line) == 2:
@@ -236,7 +236,7 @@ with open("Yeast Transcriptomics Data/labels_MF.csv",'r') as r3:
             cur.execute('INSERT IGNORE INTO Localization(Molecular_Function) VALUES (%s)', molecularFunction5)
             # print(ID, validation, molecularFunction1, molecularFunction2, molecularFunction3, molecularFunction4, molecularFunction5)
 
-# with open("Yeast Transcriptomics Data/labels_CC.csv","r") as r4:
+# with open("data/labels_CC.csv","r") as r4:
 #     for line in r3:
 #         line = line.split(',')
 #         # print(line,len(line))
