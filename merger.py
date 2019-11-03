@@ -22,7 +22,7 @@ final = final.rename(columns={'validation_x':'validation','localization_x':'Biol
 final = final.drop_duplicates()
 final = final.fillna('null')
 print(final)
-final.to_csv('data/combined_BP_CC_MF')
+final.to_csv('data/combined_BP_CC_MF.csv')
 # final = pd.DataFrame(final)
 # final.to_csv('output.csv')
 #combine the rows of the localization of genes only for (BP, CC, MF)

@@ -41,7 +41,7 @@ with open("data/rf_conditions_annotations.csv", 'r') as r1:
         additional_info = line.__getitem__(4)
         #print(ID_num,sample_ID,primary,secondary,additional_info)
         cur.execute('INSERT IGNORE INTO Conditions_Annotations(Condit_ID,PrimaryComponent,SecondaryComponent,Additional_Information) VALUES (%s,%s,%s,%s)',(sample_ID, primary, secondary, additional_info))
-with open("data/combined_BP_CC_MF", 'r') as r1:
+with open("data/combined_BP_CC_MF.csv", 'r') as r1:
     #,gene,validation,Biological_process,Cellular_component,Molecular_function
     next(r1)
     for line in r1:
