@@ -42,6 +42,8 @@ def file_condit(df):
     print(rsf3)
     rsf3.to_csv('data/rf_conditions_annotations.csv')
     # -----ONLY FOR CONDITIONS TABLE BLOCK END---------
+
+    # ------callling functions
     file_formater(f1)
     file_formater(f2)
     file_formater(f3)
