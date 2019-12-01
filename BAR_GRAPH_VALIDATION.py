@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import pymysql as ps
+import plotly.graph_objects as go
 
 
 def make_connection():
