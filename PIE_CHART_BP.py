@@ -49,4 +49,6 @@ print(total)
 labels = bp
 values = total
 fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
+fig.update_layout(
+    title_text="Biological Processes found in Genes",)
 fig.show()
