@@ -8,7 +8,7 @@ f3 = 'data/labels_MF.csv'
 f4 = 'data/conditions_annotation.csv'
 
 
-def file_formater(df):
+def file_formatter(df):
     # reads the csv file into a dataframe
     df = pd.DataFrame(pd.read_csv(f4))
     print(df)
@@ -44,7 +44,7 @@ def file_condit(df):
     # -----ONLY FOR CONDITIONS TABLE BLOCK END---------
 
     # ------callling functions
-    file_formater(f1)
-    file_formater(f2)
-    file_formater(f3)
+    file_formatter(f1)
+    file_formatter(f2)
+    file_formatter(f3)
     file_condit(f4)
