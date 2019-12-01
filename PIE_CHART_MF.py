@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import re
 
+
 def make_connection():
     return ps.connect(host='yeast-transcriptomes.czfisxdhgfsf.us-east-1.rds.amazonaws.com', user='admin',
                       passwd='qJ6D2qwzjhbdwic',
@@ -20,11 +21,10 @@ mf = []
 total = []
 for x in ALL:
     print(x)
-    startinfo = str(x).replace(')', '').replace('(', '').replace('n\', '').replace("\","")
+    startinfo = str(x).replace(')', '').replace('(', '').replace('u\'', '').replace('n\'', '').replace("\\", "").replace("'","")
     splitinfo = startinfo.split(',')
     tmf = splitinfo[0]
-    mfn = re.sub("\n", "", splitinfo[1])
-    # print(splitinfo)
+    mfn = splitinfo[1]
     total.append(tmf)
     mf.append(mfn)
     print(startinfo)
@@ -46,11 +46,11 @@ for x in pt:
         npt.append("")
         bc = False
     npt.append(x)
-print(total)
+# print(total)
 
 labels = mf
 values = total
 fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
 fig.update_layout(
-    title_text="Molecular Functions found in Genes",)
+    title_text="Molecular Functions found in Genes", )
 fig.show()
