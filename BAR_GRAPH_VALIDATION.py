@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import pymysql as ps
 import plotly.graph_objects as go
+import pandas as pd
 
 
 def make_connection():
@@ -13,53 +14,31 @@ cnx = make_connection()
 cur = cnx.cursor()
 
 cur.execute('USE yeast_transcriptomesDB');
-cur.execute("SELECT Gene_ID FROM Yeast_Gene WHERE Validation = 'null'")
-null = cur.fetchall()
-nullList = [list(i) for i in null]
-nullCount = 0
-for x in null:
-    nullCount += 1
+cur.execute(
+    "SELECT COUNT(GENE_ID) as 'Total', yg.Validation FROM Yeast_Gene yg GROUP BY yg.Validation ORDER BY Total DESC")
+ALL = cur.fetchall()
+val = []
+total = []
+for x in ALL:
+    print(x)
+    startinfo = str(x).replace(')', '').replace('(', '').replace('u\'', '').replace('n\'', '').replace("\\",
+                                                                                                       "").replace("'",
+                                                                                                                   "")
+    splitinfo = startinfo.split(',')
+    valtotal = splitinfo[0]
+    mfn = splitinfo[1]
+    total.append(valtotal)
+    val.append(mfn)
+    print(startinfo)
+df = pd.DataFrame({
+    'Total': total,
+    'Validation': val
 
-cur.execute("SELECT Gene_ID FROM Yeast_Gene WHERE Validation = 'Verified'")
-verified = cur.fetchall()
-verifiedList = [list(i) for i in verified]
-verifiedCount = 0
-for x in verified:
-    verifiedCount += 1
+})
 
-cur.execute("SELECT Gene_ID FROM Yeast_Gene WHERE Validation = 'Dubious'")
-dubious = cur.fetchall()
-dubiousList = [list(i) for i in dubious]
-dubiousCount = 0
-for x in dubious:
-    dubiousCount += 1
+fig = go.Figure(go.Funnel(
+    y=val,
+    x=total,
+))
 
-cur.execute("SELECT Gene_ID FROM Yeast_Gene WHERE Validation = 'Uncharacterized'")
-unchar = cur.fetchall()
-uncharList = [list(i) for i in unchar]
-uncharCount = 0
-for x in unchar:
-    uncharCount += 1
-
-cur.execute("SELECT Gene_ID FROM Yeast_Gene WHERE Validation = 'Verified|silenced_gene'")
-vsg = cur.fetchall()
-vsgList = [list(i) for i in vsg]
-vsgCount = 0
-for x in vsg:
-    vsgCount += 1
-
-cur.execute("SELECT DISTINCT Validation FROM Yeast_Gene")
-validation = cur.fetchall()
-validationList = [list(i) for i in validation]
-validationCount = 0
-for x in validationList:
-    validationCount += 1
-
-result = [nullCount, verifiedCount, dubiousCount, uncharCount, vsgCount]
-x_axis = [1, 2, 3, 4, 5]
-
-plt.bar(x_axis, result, align='center')
-plt.xticks(x_axis, validationList, rotation=45)
-plt.xlabel('Validation')
-plt.ylabel('Count')
-plt.show()
+fig.show()
