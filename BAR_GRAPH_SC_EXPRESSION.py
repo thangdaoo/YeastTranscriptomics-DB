@@ -64,7 +64,7 @@ while (start != total):
     end += 5
 
 fig.update_layout(barmode='stack', xaxis_title='Gene Name', xaxis={'categoryorder': 'category ascending'},
-                  title={'text': 'Expression in Yeast Genes', 'y': 0.9, 'x': 0.5, 'xanchor': 'center',
+                  title={'text': 'Expression in Genes', 'y': 0.9, 'x': 0.5, 'xanchor': 'center',
                          'yanchor': 'top'},
                   yaxis=dict(title='TPM (transcripts per million)'))
 fig.show()
