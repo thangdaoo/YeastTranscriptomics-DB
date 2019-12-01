@@ -59,7 +59,6 @@ x_axis = [1, 2, 3, 4, 5]
 
 plt.bar(x_axis, result, align='center')
 plt.xticks(x_axis, validationList, rotation=45)
-fig, ax = plt.subplots()
 plt.xlabel('Validation')
 plt.ylabel('Count')
 plt.show()
