@@ -13,31 +13,31 @@ cnx = make_connection()
 cur = cnx.cursor()
 cur.execute('USE yeast_transcriptomesDB');
 cur.execute(
-    "SELECT COUNT(Gene_ID) AS 'Total', Biological_Process FROM Yeast_Gene Group by Biological_Process ORDER BY Total DESC")
+    "SELECT COUNT(*) as 'Total', Cellular_Component FROM Yeast_Gene GROUP BY Cellular_Component ORDER BY Total DESC")
 ALL = cur.fetchall()
-bp = []
+cc = []
 total = []
 for x in ALL:
     startinfo = str(x).replace(')', '').replace('(', '').replace('u\'', '').replace("'", "")
     splitinfo = startinfo.split(',')
-    tbp = splitinfo[0]
-    bpn = splitinfo[1]
+    tcc = splitinfo[0]
+    ccn = splitinfo[1]
     # print(splitinfo)
-    total.append(tbp)
-    bp.append(bpn)
+    total.append(tcc)
+    cc.append(ccn)
 df = pd.DataFrame({
     'Total': total,
-    'Biological Process': bp
+    'Cellular Component': cc
 
 })
 # print(df)
-bp = df['Biological Process'].to_numpy()
+cc = df['Cellular Component'].to_numpy()
 total = df['Total'].to_numpy(dtype=int)
 total = list(total)
-pt = list(bp)
+pt = list(cc)
 npt = list()
 bc = True
-bpn = list()
+ccn = list()
 for x in pt:
     while (bc):
         npt.append("")
@@ -45,9 +45,9 @@ for x in pt:
     npt.append(x)
 print(total)
 
-labels = bp
+labels = cc
 values = total
 fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
 fig.update_layout(
-    title_text="Biological Processes found in Genes",)
+    title_text="Gene Localizations",)
 fig.show()

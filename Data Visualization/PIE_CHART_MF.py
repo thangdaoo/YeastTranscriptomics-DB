@@ -1,7 +1,7 @@
-import matplotlib.pyplot as plt
-import pymysql as ps
-import plotly.graph_objects as go
 import pandas as pd
+import plotly.graph_objects as go
+import pymysql as ps
+
 
 def make_connection():
     return ps.connect(host='yeast-transcriptomes.czfisxdhgfsf.us-east-1.rds.amazonaws.com', user='admin',
@@ -13,41 +13,40 @@ cnx = make_connection()
 cur = cnx.cursor()
 cur.execute('USE yeast_transcriptomesDB');
 cur.execute(
-    "SELECT COUNT(Gene_ID) AS 'Total', Biological_Process FROM Yeast_Gene Group by Biological_Process ORDER BY Total DESC")
+    "SELECT COUNT(GENE_ID) as 'Total', Molecular_Function FROM Yeast_Gene yg GROUP BY yg.Molecular_Function ORDER BY Total DESC")
 ALL = cur.fetchall()
-bp = []
+mf = []
 total = []
 for x in ALL:
-    startinfo = str(x).replace(')', '').replace('(', '').replace('u\'', '').replace("'", "")
+    startinfo = str(x).replace(')', '').replace('(', '').replace('u\'', '').replace('n\'', '').replace("\\", "").replace("'","")
     splitinfo = startinfo.split(',')
-    tbp = splitinfo[0]
-    bpn = splitinfo[1]
-    # print(splitinfo)
-    total.append(tbp)
-    bp.append(bpn)
+    tmf = splitinfo[0]
+    mfn = splitinfo[1]
+    total.append(tmf)
+    mf.append(mfn)
 df = pd.DataFrame({
     'Total': total,
-    'Biological Process': bp
+    'Molecular Function': mf
 
 })
-# print(df)
-bp = df['Biological Process'].to_numpy()
+
+mf = df['Molecular Function'].to_numpy()
 total = df['Total'].to_numpy(dtype=int)
 total = list(total)
-pt = list(bp)
+pt = list(mf)
 npt = list()
 bc = True
-bpn = list()
+mfn = list()
 for x in pt:
     while (bc):
         npt.append("")
         bc = False
     npt.append(x)
-print(total)
+# print(total)
 
-labels = bp
+labels = mf
 values = total
 fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
 fig.update_layout(
-    title_text="Biological Processes found in Genes",)
+    title_text="Molecular Functions found in Genes", )
 fig.show()
