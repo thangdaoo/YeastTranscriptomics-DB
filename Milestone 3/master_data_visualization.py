@@ -15,7 +15,7 @@ cur = cnx.cursor()
 
 fig = make_subplots(
     rows=2, cols=3,
-    subplot_titles=("Plot 1", "Plot 2", "Plot 3", "Plot 4", "Plot 5", "Plot 6")
+    subplot_titles=("Expression in Genes", "", "Gene Validations")
 )
 # ------------------SC EXPRESSION GRAPH START ---------------
 cur.execute('USE yeast_transcriptomesDB');
@@ -139,7 +139,7 @@ bpn = list()
 labels = bp
 values = total
 
-fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[0, .30], y=[0, .4])))
+fig.add_trace(go.Pie(labels=labels, values=values, title='Biological Processes within Genes',domain=dict(x=[0, .30], y=[0, .4])))
 # ------------END PIE BP-------------
 # -----------start cc---------------
 cur.execute('USE yeast_transcriptomesDB');
@@ -177,7 +177,7 @@ for x in pt:
 print(total)
 labels = cc
 values = total
-fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[.35, 0.65], y=[0, .4])))
+fig.add_trace(go.Pie(labels=labels, values=values, title='Cellular Component of Genes', domain=dict(x=[.35, 0.65], y=[0, .4])))
 # e------------end cc-------------------
 # e------------start mf-------------------
 cur.execute('USE yeast_transcriptomesDB');
@@ -217,7 +217,7 @@ for x in pt:
 
 labels = mf
 values = total
-fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[.70, 1], y=[0, .4])))
+fig.add_trace(go.Pie(labels=labels, values=values, title='Associated Molecular Function with Genes', domain=dict(x=[.70, 1], y=[0, .4])))
 # e------------end mf-------------------
 # fig.add_trace(go.Scatter(x=[20, 30, 40], y=[50, 60, 70]),
 #               row=1, col=2)
@@ -229,6 +229,12 @@ fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[.70, 1], y=[0,
 #               row=2, col=2)
 
 fig.update_layout(height=1000, width=1400,
-                  title_text="Multiple Subplots with Titles")
+                  title={
+                      'text': "Yeast Transcriptomes Dashboard",
+                      'y': .99,
+                      'x': .5,
+                      'xanchor': 'center',
+                      'yanchor': 'top'
+                  })
 fig.update(layout_showlegend=False)
 fig.show()
