@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 
 # name of the files we want to reformat
-f1 = 'data/labels_BP.csv'
-f2 = 'data/labels_CC.csv'
-f3 = 'data/labels_MF.csv'
-f4 = 'data/conditions_annotation.csv'
+f1 = 'Yeast Data/labels_BP.csv'
+f2 = 'Yeast Data/labels_CC.csv'
+f3 = 'Yeast Data/labels_MF.csv'
+f4 = 'Yeast Data/conditions_annotation.csv'
 
 
 def file_formatter(df):
@@ -27,7 +27,7 @@ def file_formatter(df):
     # generate new csv file
     rsf5 = rsf4.fillna('null')
     print(rsf5)
-    rsf5.to_csv('data/rf_labels_BP.csv')
+    rsf5.to_csv('Yeast Data/rf_labels_BP.csv')
 
 
 def file_condit(df):
@@ -40,7 +40,7 @@ def file_condit(df):
     rsf2 = pd.DataFrame(rsf1)
     rsf3 = rsf2.drop_duplicates()
     print(rsf3)
-    rsf3.to_csv('data/rf_conditions_annotations.csv')
+    rsf3.to_csv('Yeast Data/rf_conditions_annotations.csv')
     # -----ONLY FOR CONDITIONS TABLE BLOCK END---------
 
     # ------callling functions

@@ -108,9 +108,9 @@ def sc_expression(file_name):
             print('Process: ' + str(process) + ' ' + 'Total: ' + str(total))
 
 #functions that were called
-condit_annont("data/rf_conditions_annotations.csv")
-yeast_gene_combine("data/combined_BP_CC_MF.csv")
-sc_expression("data/rf_SC_expressions.csv")
+condit_annont("Yeast Data/rf_conditions_annotations.csv")
+yeast_gene_combine("Yeast Data/combined_BP_CC_MF.csv")
+sc_expression("Yeast Data/rf_SC_expressions.csv")
 cur.close()
 cnx.commit()
 cnx.close()

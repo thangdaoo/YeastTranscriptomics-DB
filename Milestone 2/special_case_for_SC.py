@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # name of the files we want to reformat
-f1 = 'data/SC_expression.csv'
+f1 = 'Yeast Data/SC_expression.csv'
 # reads the csv file into a dataframe
 df = pd.DataFrame(pd.read_csv(f1))
 print(df)
@@ -16,7 +16,7 @@ rsf3 = rsf3.rename(columns={'gene': 'Gene_ID', 'variable': 'Condition_ID', 'valu
 print(rsf3)
 rsf4 = rsf3.drop_duplicates()
 # csv out to a new csv file
-rsf4.to_csv('data/rf_SC_expressions.csv')
+rsf4.to_csv('Yeast Data/rf_SC_expressions.csv')
 # #input into a dataframe
 # rsf2 = pd.DataFrame(rsf1)
 # print(rsf2)
@@ -27,4 +27,4 @@ rsf4.to_csv('data/rf_SC_expressions.csv')
 # rsf4 = rsf3.drop_duplicates()
 # print(rsf4)
 # #generate new csv file
-# rsf4.to_csv('data/rf_labels_MF.csv')
+# rsf4.to_csv('Yeast Data/rf_labels_MF.csv')

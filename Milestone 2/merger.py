@@ -1,8 +1,8 @@
 import pandas as pd
-#as needed depends on data
-f1 = 'data/rf_labels_BP.csv'
-f2 = 'data/rf_labels_CC.csv'
-f3 = 'data/rf_labels_MF.csv'
+#as needed depends on Yeast Data
+f1 = 'Yeast Data/rf_labels_BP.csv'
+f2 = 'Yeast Data/rf_labels_CC.csv'
+f3 = 'Yeast Data/rf_labels_MF.csv'
 df1 = pd.read_csv(f1)
 df2 = pd.read_csv(f2)
 df3 = pd.read_csv(f3)
@@ -25,7 +25,7 @@ final = final.rename(columns={'validation_x': 'validation', 'localization_x': 'B
 final = final.drop_duplicates()
 final = final.fillna('null')
 print(final)
-final.to_csv('data/combined_BP_CC_MF.csv')
+final.to_csv('Yeast Data/combined_BP_CC_MF.csv')
 # final = pd.DataFrame(final)
 # final.to_csv('output.csv')
 # combine the rows of the localization of genes only for (BP, CC, MF)
