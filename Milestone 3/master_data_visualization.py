@@ -131,15 +131,13 @@ df = pd.DataFrame({
 bp = df['Biological Process'].to_numpy()
 total = df['Total'].to_numpy(dtype=int)
 total = list(total)
-pt = list(bp)
-npt = list()
-bc = True
-bpn = list()
 
 labels = bp
 values = total
 
-fig.add_trace(go.Pie(labels=labels, values=values, title='Biological Processes within Genes',domain=dict(x=[0, .30], y=[0, .4])))
+fig.add_trace(
+    go.Pie(labels=labels, values=values, title='Biological Processes within Genes', domain=dict(x=[0, .30], y=[0, .4]),
+           textinfo='label'))
 # ------------END PIE BP-------------
 # -----------start cc---------------
 cur.execute('USE yeast_transcriptomesDB');
@@ -166,18 +164,11 @@ cc = df['Cellular Component'].to_numpy()
 total = df['Total'].to_numpy(dtype=int)
 total = list(total)
 pt = list(cc)
-npt = list()
-bc = True
-ccn = list()
-for x in pt:
-    while (bc):
-        npt.append("")
-        bc = False
-    npt.append(x)
-print(total)
 labels = cc
 values = total
-fig.add_trace(go.Pie(labels=labels, values=values, title='Cellular Component of Genes', domain=dict(x=[.35, 0.65], y=[0, .4])))
+fig.add_trace(
+    go.Pie(labels=labels, values=values, title='Cellular Component of Genes', domain=dict(x=[.35, 0.65], y=[0, .4]),
+           textinfo='label'))
 # e------------end cc-------------------
 # e------------start mf-------------------
 cur.execute('USE yeast_transcriptomesDB');
@@ -204,20 +195,10 @@ df = pd.DataFrame({
 mf = df['Molecular Function'].to_numpy()
 total = df['Total'].to_numpy(dtype=int)
 total = list(total)
-pt = list(mf)
-npt = list()
-bc = True
-mfn = list()
-for x in pt:
-    while (bc):
-        npt.append("")
-        bc = False
-    npt.append(x)
-# print(total)
-
 labels = mf
 values = total
-fig.add_trace(go.Pie(labels=labels, values=values, title='Associated Molecular Function with Genes', domain=dict(x=[.70, 1], y=[0, .4])))
+fig.add_trace(go.Pie(labels=labels, values=values, title='Associated Molecular Function with Genes',
+                     domain=dict(x=[.70, 1], y=[0, .4]), textinfo='label'))
 # e------------end mf-------------------
 # fig.add_trace(go.Scatter(x=[20, 30, 40], y=[50, 60, 70]),
 #               row=1, col=2)
