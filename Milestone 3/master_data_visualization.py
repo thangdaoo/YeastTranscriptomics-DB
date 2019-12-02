@@ -14,8 +14,8 @@ cnx = make_connection()
 cur = cnx.cursor()
 
 fig = make_subplots(
-    rows=4, cols=4,
-    subplot_titles=("Plot 1", "Plot 2", "Plot 3", "Plot 4"),
+    rows=2, cols=3,
+    subplot_titles=("Plot 1", "Plot 2", "Plot 3", "Plot 4", "Plot 5", "Plot 6")
 )
 # ------------------SC EXPRESSION GRAPH START ---------------
 cur.execute('USE yeast_transcriptomesDB');
@@ -139,8 +139,7 @@ bpn = list()
 labels = bp
 values = total
 
-fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[0.52, 1], y=[0, .49]))
-              )
+fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[0, .30], y=[0, .4])))
 # ------------END PIE BP-------------
 # -----------start cc---------------
 cur.execute('USE yeast_transcriptomesDB');
@@ -178,7 +177,7 @@ for x in pt:
 print(total)
 labels = cc
 values = total
-fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[0, 0.48], y=[.51, 1])))
+fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[.35, 0.65], y=[0, .4])))
 # e------------end cc-------------------
 # e------------start mf-------------------
 cur.execute('USE yeast_transcriptomesDB');
@@ -218,7 +217,7 @@ for x in pt:
 
 labels = mf
 values = total
-fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[0, 0.48], y=[0, .49])))
+fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[.70, 1], y=[0, .4])))
 # e------------end mf-------------------
 # fig.add_trace(go.Scatter(x=[20, 30, 40], y=[50, 60, 70]),
 #               row=1, col=2)
@@ -229,7 +228,7 @@ fig.add_trace(go.Pie(labels=labels, values=values, domain=dict(x=[0, 0.48], y=[0
 # fig.add_trace(go.Scatter(x=[4000, 5000, 6000], y=[7000, 8000, 9000]),
 #               row=2, col=2)
 
-fig.update_layout(height=500, width=700,
+fig.update_layout(height=1000, width=1400,
                   title_text="Multiple Subplots with Titles")
 fig.update(layout_showlegend=False)
 fig.show()
