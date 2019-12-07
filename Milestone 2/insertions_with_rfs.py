@@ -1,10 +1,6 @@
 import pymysql as ps
 
 
-# name db = yeast-transcriptomes
-# user_name = admin
-# password: qJ6D2qwzjhbdwic
-# make the connection to the db
 def make_connection():
     return ps.connect(host='yeast-transcriptomes.czfisxdhgfsf.us-east-1.rds.amazonaws.com', user='admin',
                       passwd='qJ6D2qwzjhbdwic',
@@ -14,28 +10,30 @@ def make_connection():
 cnx = make_connection()
 cur = cnx.cursor()
 
-# Setting up the database
-cur.execute('CREATE DATABASE yeast_transcriptomesDB');
-cur.execute('USE yeast_transcriptomesDB');
 
-# Drop Existing Tables
-cur.execute('DROP TABLE IF EXISTS Conditions_Annotations');
-cur.execute('DROP TABLE IF EXISTS Yeast_Gene');
-cur.execute('DROP TABLE IF EXISTS Localization');
-cur.execute('DROP TABLE IF EXISTS SC_Expression');
-cur.execute('DROP TABLE IF EXISTS YeastGene_Localization');
-# Create Tables
-cur.execute(
-    '''CREATE TABLE Conditions_Annotations (Condit_ID VARCHAR(30) NOT NULL PRIMARY KEY,PrimaryComponent VARCHAR(30),SecondaryComponent VARCHAR(30),Additional_Information VARCHAR(30));''')
-cur.execute(
-    '''CREATE TABLE Yeast_Gene (Gene_ID VARCHAR(30) NOT NULL PRIMARY KEY,Validation VARCHAR(30),Biological_Process VARCHAR(30),Cellular_Component VARCHAR(30),Molecular_Function VARCHAR(30));''')
-cur.execute(
-    '''CREATE TABLE Localization (Localization_ID INT NOT NULL PRIMARY KEY,Biological_Process_Loc VARCHAR(30),Cellular_Component_Loc VARCHAR(30),Molecular_Function VARCHAR(30));''')
-# Create Join Tables
-cur.execute(
-    '''CREATE TABLE SC_Expression (SC_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,Gene_ID VARCHAR(30) NOT NULL ,Condit_ID VARCHAR(30) NOT NULL, FOREIGN KEY(Gene_ID) REFERENCES Yeast_Gene(Gene_ID),FOREIGN KEY(Condit_ID) REFERENCES Conditions_Annotations(Condit_ID),SC_Expression FLOAT);''')
-cur.execute(
-    '''CREATE TABLE YeastGene_Localization (Gene_local_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Gene_ID VARCHAR(30) NOT NULL, Localization_ID INT NOT NULL , FOREIGN KEY(Gene_ID) REFERENCES Yeast_Gene(Gene_ID),FOREIGN KEY(Localization_ID) REFERENCES Localization(Localization_ID));''')
+# Setting up the database
+def createdb():
+    cur.execute('CREATE DATABASE yeast_transcriptomesDB');
+    cur.execute('USE yeast_transcriptomesDB');
+
+    # Drop Existing Tables
+    cur.execute('DROP TABLE IF EXISTS Conditions_Annotations');
+    cur.execute('DROP TABLE IF EXISTS Yeast_Gene');
+    cur.execute('DROP TABLE IF EXISTS Localization');
+    cur.execute('DROP TABLE IF EXISTS SC_Expression');
+    cur.execute('DROP TABLE IF EXISTS YeastGene_Localization');
+    # Create Tables
+    cur.execute(
+        '''CREATE TABLE Conditions_Annotations (Condit_ID VARCHAR(30) NOT NULL PRIMARY KEY,PrimaryComponent VARCHAR(30),SecondaryComponent VARCHAR(30),Additional_Information VARCHAR(30));''')
+    cur.execute(
+        '''CREATE TABLE Yeast_Gene (Gene_ID VARCHAR(30) NOT NULL PRIMARY KEY,Validation VARCHAR(30),Biological_Process VARCHAR(30),Cellular_Component VARCHAR(30),Molecular_Function VARCHAR(30));''')
+    cur.execute(
+        '''CREATE TABLE Localization (Localization_ID INT NOT NULL PRIMARY KEY,Biological_Process_Loc VARCHAR(30),Cellular_Component_Loc VARCHAR(30),Molecular_Function VARCHAR(30));''')
+    # Create Join Tables
+    cur.execute(
+        '''CREATE TABLE SC_Expression (SC_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,Gene_ID VARCHAR(30) NOT NULL ,Condit_ID VARCHAR(30) NOT NULL, FOREIGN KEY(Gene_ID) REFERENCES Yeast_Gene(Gene_ID),FOREIGN KEY(Condit_ID) REFERENCES Conditions_Annotations(Condit_ID),SC_Expression FLOAT);''')
+    cur.execute(
+        '''CREATE TABLE YeastGene_Localization (Gene_local_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY, Gene_ID VARCHAR(30) NOT NULL, Localization_ID INT NOT NULL , FOREIGN KEY(Gene_ID) REFERENCES Yeast_Gene(Gene_ID),FOREIGN KEY(Localization_ID) REFERENCES Localization(Localization_ID));''')
 
 
 # functions creations
@@ -107,7 +105,9 @@ def sc_expression(file_name):
             process += 1
             print('Process: ' + str(process) + ' ' + 'Total: ' + str(total))
 
-#functions that were called
+
+# functions that were called
+createdb()
 condit_annont("Yeast Data/rf_conditions_annotations.csv")
 yeast_gene_combine("Yeast Data/combined_BP_CC_MF.csv")
 sc_expression("Yeast Data/rf_SC_expressions.csv")

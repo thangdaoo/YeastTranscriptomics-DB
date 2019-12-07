@@ -1,5 +1,6 @@
 import pandas as pd
-#as needed depends on Yeast Data
+
+# as needed depends on Yeast Data
 f1 = 'Yeast Data/rf_labels_BP.csv'
 f2 = 'Yeast Data/rf_labels_CC.csv'
 f3 = 'Yeast Data/rf_labels_MF.csv'
@@ -20,12 +21,18 @@ second_merge = pd.merge(left=first_merge, right=rsf3, left_on='gene', right_on='
 final = pd.DataFrame(second_merge)
 
 final = final.drop(['validation_y', 'validation', ], axis=1)
+# rename the columns in the CSV
 final = final.rename(columns={'validation_x': 'validation', 'localization_x': 'Biological_process',
                               'localization_y': 'Cellular_component', 'localization': 'Molecular_function'})
+# remove duplicates in the table
 final = final.drop_duplicates()
+# fill in the NaN with null
 final = final.fillna('null')
 print(final)
+# create new csv file
 final.to_csv('Yeast Data/combined_BP_CC_MF.csv')
+
+#
 # final = pd.DataFrame(final)
 # final.to_csv('output.csv')
 # combine the rows of the localization of genes only for (BP, CC, MF)
