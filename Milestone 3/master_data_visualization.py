@@ -65,7 +65,7 @@ def make_dashboard():
     start = 0
     end = 4
     while (start != total):
-        # add bar graph to main figure
+        # add SC Expression bar graph
         fig.add_trace(go.Bar(x=gn[start:end], y=sc[start:end], name=cd[start]), row=1, col=1)
         start += 5
         end += 5
@@ -102,7 +102,7 @@ def make_dashboard():
         'Validation': val
 
     })
-    # add the bar graph to main figure
+    # add validation bar graph
     fig.add_trace(go.Bar(
         y=val,
         x=total,
@@ -124,7 +124,6 @@ def make_dashboard():
         splitinfo = startinfo.split(',')
         tbp = splitinfo[0]
         bpn = splitinfo[1]
-        # print(splitinfo)
         total.append(tbp)
         bp.append(bpn)
     df = pd.DataFrame({
@@ -132,20 +131,20 @@ def make_dashboard():
         'Biological Process': bp
 
     })
-    # print(df)
     bp = df['Biological Process'].to_numpy()
     total = df['Total'].to_numpy(dtype=int)
     total = list(total)
 
     labels = bp
     values = total
-    # add pie graph
+    # add BP pie graph
     fig.add_trace(
         go.Pie(labels=labels, values=values, title='Biological Processes within Genes',
                domain=dict(x=[0, .30], y=[0, .4]),
                textinfo='label'))
     # ------------END PIE BP-------------
-    # -----------start cc---------------
+
+    # -----------START CC---------------
     cur.execute('USE yeast_transcriptomesDB');
     cur.execute(
         "SELECT COUNT(*) as 'Total', Cellular_Component FROM Yeast_Gene GROUP BY Cellular_Component ORDER BY Total DESC")
@@ -157,7 +156,6 @@ def make_dashboard():
         splitinfo = startinfo.split(',')
         tcc = splitinfo[0]
         ccn = splitinfo[1]
-        # print(splitinfo)
         total.append(tcc)
         cc.append(ccn)
     df = pd.DataFrame({
@@ -165,22 +163,22 @@ def make_dashboard():
         'Cellular Component': cc
 
     })
-    # print(df)
     cc = df['Cellular Component'].to_numpy()
     total = df['Total'].to_numpy(dtype=int)
     total = list(total)
     pt = list(cc)
     labels = cc
     values = total
-    # add pie graph
+    # add CC pie graph
     fig.add_trace(
         go.Pie(labels=labels, values=values, title='Cellular Component of Genes', domain=dict(x=[.35, 0.65], y=[0, .4]),
                textinfo='label'))
-    # e------------end cc-------------------
-    # e------------start mf-------------------
+    # e------------END CC-------------------
+
+    # e------------START MF-------------------
     cur.execute('USE yeast_transcriptomesDB');
     cur.execute(
-        "SELECT COUNT(GENE_ID) as 'Total', Molecular_Function FROM Yeast_Gene yg GROUP BY yg.Molecular_Function ORDER BY Total DESC")
+        "SELECT COUNT(GENE_ID) as 'Total', Molecular_Function FROM Yeast_Gene GROUP BY Molecular_Function ORDER BY Total DESC")
     ALL = cur.fetchall()
     mf = []
     total = []
@@ -205,7 +203,7 @@ def make_dashboard():
     total = list(total)
     labels = mf
     values = total
-    # add pie graph
+    # add MF pie graph
     fig.add_trace(go.Pie(labels=labels, values=values, title='Associated Molecular Function with Genes',
                          domain=dict(x=[.70, 1], y=[0, .4]), textinfo='label'))
     fig.update_layout(height=1000, width=1400,
@@ -219,4 +217,5 @@ def make_dashboard():
     fig.update(layout_showlegend=False)
     fig.show()
 
-    make_dashboard()
+make_connection()
+make_dashboard()
