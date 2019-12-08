@@ -1,5 +1,5 @@
 # Yeast Transcriptomics Database
-###All python files run in Python 3.7
+All python files run in Python 3.7
 ## Description
 CSC325 Final Project that creates a database in MySQL of yeast transcriptomes.
 
@@ -9,13 +9,11 @@ CSC325 Final Project that creates a database in MySQL of yeast transcriptomes.
 
 - Milestone 3: Data visualizations for dashboard.
 
-- Yeast Data: Original .csv files from Kaggle. 
-
-    https://www.kaggle.com/costalaether/yeast-transcriptomics
+- Yeast Data: Original .csv files from [Kaggle](https://www.kaggle.com/costalaether/yeast-transcriptomics).
 
 ## How To Run
-###!!!WARNING: The run-time for insertion will take more than 5 hours!!!
+###!!! WARNING: The run-time for insertion will take more than 5 hours!!!
 
-Run with insertions_with_rfs.py to add data to MySQL AWS.
+1. Run with insertions_with_rfs.py to add data to MySQL AWS
 
-To see the final dashboard run, run master_data_visualization.py  
+2. To see the final dashboard run, run master_data_visualization.py  
